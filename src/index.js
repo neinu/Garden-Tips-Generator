@@ -1,12 +1,33 @@
-function generateGardenTips(event) { 
-    event.preventDefault();
-
-new Typewriter("#tips", {
-  strings: "Fertilize: Use high-quality plant food to feed your plants regularly.",
+function displayTips(response) {
+  console.log("tips generated");
+  new Typewriter("#tips", {
+  strings: response.data.answer,
   autoStart: true,
   cursor: null,
   delay: 1
-});}
+});
+
+}
+
+function generateGardenTips(event) { 
+    event.preventDefault();
+
+    let instructionsInput = document.querySelector("#user-instructions");
+    let apiKey = "0e8d8te310o65c302134ad82cbe5fff8";
+    let context = "You are a garden expect and love to write short gardening tips. Your mission is to generate 4 line tips in basic HTML and seperate each line with a <br/>. Make sure to follow the user instructions. Sign the tips with `SheCodes AI` inside a <strong> element";
+    let prompt = `User instructions: Generate garden tips ${instructionsInput.value}`;
+    let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+    
+    console.log("Generating tips");
+    console.log(`prompt ${prompt}`);
+    console.log(`context ${context}`);
+
+
+    //make an api call
+    axios.get(apiUrl).then(displayTips);
+    //display the generated tips
+   
+}
       
 
 
