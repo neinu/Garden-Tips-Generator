@@ -1,5 +1,4 @@
 function displayTips(response) {
-  console.log("tips generated");
   new Typewriter("#tips", {
   strings: response.data.answer,
   autoStart: true,
@@ -22,12 +21,6 @@ function generateGardenTips(event) {
     tipsElement.classList.remove("hidden");
     tipsElement.innerHTML = `<div class="generating">⌛Generating garden tips for you about ${instructionsInput.value}</div>`;
     
-
-    console.log("Generating tips");
-    console.log(`prompt ${prompt}`);
-    console.log(`context ${context}`);
-
-
     //make an api call
     axios.get(apiUrl).then(displayTips);
     //display the generated tips
