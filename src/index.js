@@ -18,6 +18,11 @@ function generateGardenTips(event) {
     let prompt = `User instructions: Generate garden tips ${instructionsInput.value}`;
     let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
     
+    let tipsElement = document.querySelector("#tips");
+    tipsElement.classList.remove("hidden");
+    tipsElement.innerHTML = `<div class="generating">⌛Generating garden tips for you about ${instructionsInput.value}</div>`;
+    
+
     console.log("Generating tips");
     console.log(`prompt ${prompt}`);
     console.log(`context ${context}`);
